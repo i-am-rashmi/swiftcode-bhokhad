@@ -1,5 +1,6 @@
 package data;
 
+
 public class Message {
     public String text;
     public String timestamp;
