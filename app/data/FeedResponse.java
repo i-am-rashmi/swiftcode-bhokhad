@@ -5,4 +5,7 @@ public class FeedResponse {
     public String intent;
 
 
+
+
+
 }
