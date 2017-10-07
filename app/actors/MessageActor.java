@@ -15,19 +15,21 @@ import java.util.UUID;
 public class MessageActor extends UntypedActor {
     //Untyped : used as abstract class
     //ActorRef out reference of type MessageActor
-    public static Props props(ActorRef out){
-        return Props.create(MessageActor.class,out);
+    public static Props props(ActorRef out) {
+        return Props.create(MessageActor.class, out);
     }
+
     private final ActorRef out;
 
     private FeedService feedService = new FeedService();
 
-    private NewsAgentService newsAgentService= new NewsAgentService();
+    private NewsAgentService newsAgentService = new NewsAgentService();
 
-    public MessageActor(ActorRef out){
+    public MessageActor(ActorRef out) {
         this.out = out;
 
     }
+
     public void onReceive(Object message) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
         Message messageObject = new Message();
@@ -39,7 +41,7 @@ public class MessageActor extends UntypedActor {
             String keyword = newsAgentService
                     .getNewsAgentResponse((String) message,
                             UUID.randomUUID()).keyword;
-            if(!Objects.equals(keyword, "NOT_FOUND")){
+            if (!Objects.equals(keyword, "NOT_FOUND")) {
                 FeedResponse feedResponse = feedService.getFeedResponse(keyword);
                 messageObject.text = (feedResponse.title == null) ? "No results found" : "Showing results for: " + keyword;
                 messageObject.feedResponse = feedResponse;
@@ -48,7 +50,4 @@ public class MessageActor extends UntypedActor {
             }
         }
     }
-
-
-
 }
