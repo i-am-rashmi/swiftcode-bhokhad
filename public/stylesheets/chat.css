@@ -1,1 +1,6 @@
-
+#message-pane {
+    background-image:url(https://upload.wikimedia.org/wikipedia/en/4/4d/Sherlock_titlecard.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right bottom
+}

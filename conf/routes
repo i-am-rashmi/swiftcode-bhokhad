@@ -1,6 +1,6 @@
 # Routes
 
-GET     /                            controllers.HomeController.chat
+GET     /                            controllers.HomeController.index
 GET     /chatSocket                  controllers.HomeController.chatSocket
 
 
