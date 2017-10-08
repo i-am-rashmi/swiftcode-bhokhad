@@ -16,7 +16,7 @@ app.config(function ($mdThemingProvider) {
 
 app.controller('chatController', function ($scope, $sce) {
     $scope.messages = [] ;
-    var  exampleSocket =  new  WebSocket('wss://swiftcode-rashmi-newsbot.herokuapp.com');
+    var  exampleSocket =  new  WebSocket('wss://swiftcode-rashmi-newsbot.herokuapp.com/chatSocket');
         exampleSocket.onmessage  =   function  (event) {
             var jsonData = JSON.parse(event.data);
             jsonData.time = new Date()
