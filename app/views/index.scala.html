@@ -18,7 +18,12 @@
                          ng-style="message.sender == 'BOT'?
                          {'background-color':'#86d894'}:
                          {'background-color':'#e2e183'}">
-                    <span>{{message.text}}</span>
+                    <span>
+                        {{message.text}}
+                    </span>
+                    <span  ng-bind-html="trust(message.feedResponse.description)">
+                        {{message.feedResponse.description}}
+                    </span>
                     <span class="message-time">
                         {{message.time}}
                     </span>
@@ -29,10 +34,17 @@
         </md-content>
 
 
-        <md-card id="form-card" flex="10">
-            <form>
+        <md-card id="form-card" flex="10" layout="row" layout-align="center center" class="md-whiteframe-8dp">
+            <form flex="100" layout="row" ng-submit="sendMessage()">
+                <md-input-container flex="100">
+                    <label>Message</label>
+                    <input ng-model="userMessage">
+                </md-input-container>
             </form>
-            <md-button>
+            <md-button flex="10" class="md-icon-button" ng-click="sendMessage()">
+                <md-icon md-svg-icon="/assets/images/sendbutton.svg">
+
+                </md-icon>
 
             </md-button>
         </md-card>

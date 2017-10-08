@@ -1,41 +1,22 @@
 var app = angular.module('chatApp', ['ngMaterial']);
 
 app.controller('chatController', function ($scope, $sce) {
-    $scope.messages = [
-    {
+    $scope.messages = [] ;
+    var  exampleSocket =  new  WebSocket("wss://swiftcode-ws-chat.herokuapp.com/chatSocket");
+        exampleSocket.onmessage  =   function  (event) {
+            var jsonData = JSON.parse(event.data);
+            jsonData.time = new Date()
+                .toLocaleTimeString();
+           $scope.messages.push(jsonData);
+           $scope.$apply();
+           console.log(jsonData);
 
-        'sender':'USER' ,
-        'text':'hi',
-        'time':'10:01 AM'
+        };
 
-    },
-    {
+        $scope.sendMessage = function () {
+                exampleSocket.send($scope.userMessage);
+                            $scope.userMessage = "";
+         };
 
-            'sender':'BOT',
-            'text':'What can I do for you?',
-            'time':'10:01 AM'
-
-    },
-    {
-
-                'sender':'USER',
-                'text':'News about Modi',
-                'time':'10:01 AM'
-    },
-     {
-
-                    'sender':'BOT',
-                    'text':'INVALID',
-                    'time':'10:01 AM'
-        },
-         {
-
-                        'sender':'USER',
-                        'text':'News about Rahul Gandhi',
-                        'time':'10:01 AM'
-            }
-
-    ]
-
-
-});
+         $scope.trust = $sce.trustAsHtml;
+ });
