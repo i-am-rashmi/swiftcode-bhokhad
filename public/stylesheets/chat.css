@@ -1,6 +1,18 @@
 #message-pane {
-    background-image:url(http://gifimage.net/wp-content/uploads/2017/01/Happy-Dance-GIF-Image-for-Whatsapp-and-Facebook-32.gif);
+    background-image:url(/assets/images/chatbg.gif);
     background-repeat: no-repeat;
     background-size: center;
     background-position: center;
+}
+.message-card {
+    max-width:60%;
+    border-radius:10px;
+    padding:10px;
+    font-size:14px;
+}
+.message-time {
+    margin-top: 4px;
+    float:right;
+    color:#666666;
+    font-size:10px;
 }
